@@ -1,0 +1,13 @@
+.studentList {
+    width: 600px;
+    margin: 10vh auto; //vh total must equal 100
+    height: 80vh; //vh total must equal 100
+    background-color: white;
+    overflow-y: scroll;
+    border-radius: 20px;
+    box-shadow: 2px 2px 7px 1px #b6b6b6;
+}
+
+.studentList::-webkit-scrollbar {
+    display: none;
+}

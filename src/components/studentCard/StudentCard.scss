@@ -1,0 +1,15 @@
+.studentCard {
+
+    border-bottom: 1px solid rgb(203, 203, 203);
+
+    > * {
+        margin-bottom: 8px;
+    }
+
+
+    &__name{
+        font-weight: 600;
+    }
+}
+/// &_name => studentCard > name
+//npm install sass
