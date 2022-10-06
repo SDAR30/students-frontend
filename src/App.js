@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import StudentList from './components/studentList/StudentList';
 
 function App() {
