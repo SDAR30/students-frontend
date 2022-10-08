@@ -1,5 +1,7 @@
+@import './designUtils/colors';
+
 body{
-  background-color: #EFEFEF;
+  background-color: $background-gray;
 }
 
 //Auto margin is used by Apple, Google, Stripe, and other design leaders as a way to 

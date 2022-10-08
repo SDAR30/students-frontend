@@ -1,3 +1,5 @@
+@import './../../designUtils/colors';
+
 .studentList {
     width: 600px;
     margin: 10vh auto; //vh total must equal 100
@@ -5,9 +7,17 @@
     background-color: white;
     overflow-y: scroll;
     border-radius: 20px;
-    box-shadow: 2px 2px 7px 1px #b6b6b6;
-}
+    box-shadow: 2px 2px 7px 1px $highlight-gray;
 
-.studentList::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__noResults{
+        font-weight: 600;
+        margin: 200px auto 0px;
+        display: table;
+    }
+
+
 }
