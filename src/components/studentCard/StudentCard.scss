@@ -1,4 +1,5 @@
 @import './../../designUtils/colors';
+@import './../../designUtils/fontDesign';
 
 .studentCard {
 
@@ -6,11 +7,11 @@
     padding: 10px;
     border-bottom: 1px solid rgb(203, 203, 203);
 
-    > * {
+    >* {
         margin-bottom: 8px;
     }
 
-    &__profilePic { 
+    &__profilePic {
 
         margin: 8px;
 
@@ -24,25 +25,50 @@
 
     &__info {
         margin: 10px;
+        width: 70%;
     }
 
 
-    &__name{
+    &__name {
         font-size: 30px;
         font-weight: 600;
         text-transform: uppercase;
         margin-bottom: 5px;
-        &:hover{
+
+        &:hover {
             filter: drop-shadow(3px 3px 5px darken($background-gray, 10%))
         }
     }
 
-    &__infoLine{
-        padding-left: 18px;
-        font-size: 14px;
-        color: #858585;
+    &__infoLine {
+        @extend %gray-and-indented;
         line-height: 20px;
     }
+
+    &__gradesList {
+        @extend %gray-and-indented;
+        margin-top: 10px;
+
+        span {
+            display: inline-block;
+            min-width: 50px;
+        }
+    }
+
+    &__toggleIcons {
+        color: $highlight-gray;
+        padding-top: 7px;
+        
+        &__toggleIcon {
+            cursor: pointer;
+            &:hover{
+                color: black;
+            }
+        }
+    }
+
+    
 }
+
 /// &_name => studentCard > name
 //npm install sass
