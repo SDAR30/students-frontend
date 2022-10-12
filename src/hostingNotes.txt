@@ -1,4 +1,5 @@
 To Host on Adaptable:
+ use Node.js
 
 1) npm install serve
 
@@ -16,7 +17,7 @@ from:
 to: 
 
 "scripts": {
-"dev": "react-scripts --opensl-legacy-provider start",
+"dev": "react-scripts start",
 "start": "serve -s build -l $PORT",
 "build": "react-scripts build",
 "test": "react-scripts test",

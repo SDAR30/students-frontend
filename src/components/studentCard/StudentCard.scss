@@ -67,6 +67,13 @@
         }
     }
 
+    @media screen and (max-width: 420px){
+        &__name {
+            font-size: 20px;
+        }
+    }
+
+
     
 }
 

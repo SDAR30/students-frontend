@@ -37,7 +37,7 @@ const StudentCard = ({ student }) => {
 
                 <div className="studentCard__gradesList" style={{ "display": showGrades ? "block" : "none" }}>
                     {grades.map((grade, index) => {
-                        return <div><span>Test {index + 1}:</span> <span>{grade}%</span></div>
+                        return <div key={index}><span>Test {index + 1}:</span> <span>{grade}%</span></div>
                     })}
                 </div>
 
