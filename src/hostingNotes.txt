@@ -1,0 +1,32 @@
+To Host on Adaptable:
+
+1) npm install serve
+
+2) change scripts: 
+
+from: 
+
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+
+to: 
+
+"scripts": {
+"dev": "react-scripts --opensl-legacy-provider start",
+"start": "serve -s build -l $PORT",
+"build": "react-scripts build",
+"test": "react-scripts test",
+"eject": "react-scripts eject"
+}
+
+
+3) 
+Save that file. Now, we need to tell Adaptable to build your client as part of the deploy process.
+So go to Adaptable and on your App Status page, click the Settings tab. Then click Node.js Settings.
+In the Build Scripts box, type: build
+
+Then click "Save Settings". (Don't update the deployment yet.)
