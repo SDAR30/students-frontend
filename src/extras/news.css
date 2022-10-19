@@ -1,0 +1,166 @@
+/*
+Display: block; //starts on a new line and takes up whole width;
+this is the default for div and body.
+
+*/
+
+body{
+    margin: 0;
+    margin: 14px;
+}
+
+
+.newspaper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.newspaper > * {
+    border: 1px solid black;
+}
+
+.header{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: grid;
+    grid-template-rows: 1fr 2.2fr;
+}
+.header > .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin: .3rem .7rem;
+    
+}
+.buttons > * {
+    font-size: 1rem;
+}
+
+.header > .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: .5rem .3rem; /* top, right, bottom, left  OR top/bottom, right/left*/
+}
+
+.title > .name {
+    font-size: 2.8rem;
+}
+
+.title > :nth-child(odd){
+    max-width: 12rem;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.sectionNav{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: flex;
+    justify-content: space-around;
+}
+
+.mainStory {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.mainStory .title {
+    font-size: 2rem;
+    text-align: center;
+}
+.mainStory .columns{
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+}
+
+.columns > *{
+    border: 1px solid black;
+}
+
+.mainColumnOne > *{
+    margin-left: 2px;
+    padding: 2px;
+}
+
+.mainColumnOne .para{
+    color: rgb(61, 61, 61);
+}
+
+.mainColumnOne li {
+    list-style-type: disclosure-closed
+}
+
+.mainColumnOne .quote{
+    font-size: 1.17rem;
+    font-weight: bold;
+    max-width: 18rem;
+    word-wrap: break-word;
+}
+
+.mainColumnTwo{
+    border: 1px solid rgb(54, 156, 3);
+}
+
+.mainColumnTwo img{
+    object-fit: contain;
+    width:100%;
+    vertical-align: bottom;
+    margin: 10px;
+}
+.mainColumnTwo figcaption{
+    font-size: 0.6875rem;
+    color: rgb(82, 82, 82);
+    text-align: left;
+}
+
+.link a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: .9rem;
+}
+
+.sideStories{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.secondStory{
+    grid-column: 1/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid black;
+    
+}
+.secondStory > * {
+    padding: 2px;
+    
+}
+.secondStory > img{
+    width: 16rem;
+}
+.secondStory .title{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.secondStory .para{
+    font-size: .96rem;
+    margin-left: 7px;
+}
+.otherStory{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;
+}
+.otherStory > img{
+    width: 8rem;
+}
+.otherStory .title{
+    text-align: center;
+    font-size: .92rem;
+    font-weight: bold;
+}
