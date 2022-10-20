@@ -4,6 +4,18 @@ body{
   background-color: $background-gray;
 }
 
+.App {
+  margin: 20px;
+}
+
+@media screen and (max-width: 420px){
+  .App {
+      margin: 0;
+  }
+}
+
+
+
 //Auto margin is used by Apple, Google, Stripe, and other design leaders as a way to 
 //horizontally center elements. By setting auto margin to an element that has a defined width, 
 //you can horizontally center the element within the boundary of its parent.

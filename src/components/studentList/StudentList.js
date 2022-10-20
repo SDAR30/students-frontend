@@ -38,7 +38,7 @@ function StudentList(props) {
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {filteredStudents.map((student, index) => {
                 return (
-                    <StudentCard student={student} key={index} />
+                    <StudentCard student={student} key={student.id} />
                 )
             })}
             {filteredStudents.length === 0 && <div className="studentList__noResults">No Results</div>}

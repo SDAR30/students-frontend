@@ -26,7 +26,7 @@ let obj = { 'a': 4, 'B': 7, 'c': 3, 'D': 9 }
 // }
 
 
-obj = { 'a': [1, 2, 3], 'p': [], 't': [4, 2, 8], 'g': [3, 8, 5] }
+// obj = { 'a': [1, 2, 3], 'p': [], 't': [4, 2, 8], 'g': [3, 8, 5] }
 
 // for (let key in obj){
 //     for (let i = 0; i < obj[key].length; i++){
@@ -36,14 +36,24 @@ obj = { 'a': [1, 2, 3], 'p': [], 't': [4, 2, 8], 'g': [3, 8, 5] }
 // console.log(Object.values(obj))
 // Object.values(obj).flat().forEach(num => console.log(num))
 
-let sum = 0;
-for (const key in obj){
-    for (let index = 0; index < obj[key].length; index++){
-        sum += obj[key][index] % 2 === 1 ? obj[key][index] : 0;
-    }
-}
+// let sum = 0;
+// for (const key in obj){
+//     for (let index = 0; index < obj[key].length; index++){
+//         sum += obj[key][index] % 2 === 1 ? obj[key][index] : 0;
+//     }
+// }
 
-let arr = []
-console.log(arr.reduce((sum, num) => sum + num, 0))
-arr = ['cat', 'in', 'tpta']
-console.log(arr.reduce((str, num)=> str + num, ''))
+// let arr = []
+// console.log(arr.reduce((sum, num) => sum + num, 0))
+// arr = ['cat', 'in', 'tpta']
+// console.log(arr.reduce((str, num)=> str + num, ''))
+
+// const foods = [{type: 'meat', calories: 100, name: 'steak'},{type: 'veg', calories: 30, name: 'carrot'},
+// {type: 'diary', calories: 50, name: 'milk'},{type: 'meat', calories: 200, name: 'chicken'}]
+
+// foods.sort((foodA, foodB)=>foodB.calories - foodA.calories)
+// console.log(foods)
+
+/* arr.split('') takes N times to split the array.
+   arr.includes(char) takes N times, since you are checking n elements;
+*/

@@ -3,9 +3,15 @@
 
 .studentCard {
 
-    display: flex;
     padding: 10px;
-    border-bottom: 1px solid rgb(203, 203, 203);
+    border-bottom: 2px solid rgb(203, 203, 203);
+    background-color: white;
+
+    a{
+        text-decoration: none;
+        display: flex;
+        color: unset;
+    }
 
     >* {
         margin-bottom: 8px;
