@@ -5,7 +5,7 @@ import './StudentCard.scss'
 import SingleTextInput from '../singleTextInput/SinlgeTextInput';
 
 const StudentCard = ({ student }) => {
-    const { pic, firstName, lastName, company, skill, email, grades } = student;
+    const { pic, firstname, lastname, company, skill, email, grades=[] } = student;
     const [showGrades, setShowGrades] = useState(false)
     const [tags, setTags] = useState([])
     const [tag, setTag] = useState('')
@@ -29,7 +29,7 @@ const StudentCard = ({ student }) => {
 
                 <div className="studentCard__info">
                     <div className="studentCard__name">
-                        {`${firstName} - ${lastName}`}
+                        {`${firstname} - ${lastname}`}
                     </div>
 
                     <div className="studentCard__infoLine">

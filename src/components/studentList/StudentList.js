@@ -13,7 +13,7 @@ function StudentList(props) {
 
         fetch(url).then(res => res.json())
             .then(data => {
-                setStudents(data.students);
+                setStudents(data);
             })
 
     }, [])
