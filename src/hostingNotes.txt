@@ -31,3 +31,5 @@ So go to Adaptable and on your App Status page, click the Settings tab. Then cli
 In the Build Scripts box, type: build
 
 Then click "Save Settings". (Don't update the deployment yet.)
+
+(To Run locally now, you have to enter "npm run dev")
