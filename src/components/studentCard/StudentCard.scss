@@ -51,6 +51,10 @@
         line-height: 20px;
     }
 
+    &__gradeAverage{
+        padding-bottom: 6px;
+    }
+
     &__gradesList {
         @extend %gray-and-indented;
         margin-top: 10px;
@@ -86,8 +90,19 @@
             &:hover{
                 color: black;
             }
+            &-spinning{
+                animation: spin-animation 1.5s infinite;
+            }
         }
     }
+    @keyframes spin-animation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(359deg);
+        }
+      }
 
     @media screen and (max-width: 420px){
         &__name {
