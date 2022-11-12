@@ -13,12 +13,6 @@
         display: none;
     }
 
-    &__noResults{
-        font-weight: 600;
-        margin: 200px auto 0px;
-        display: table;
-    }
-
     //media query
         //overwrite some rules
 
@@ -29,6 +23,7 @@
             overflow-y: unset;
             box-shadow: unset;
             border-radius: 0;
+            width: unset;
 
             &__noResults{
                 padding: 200px 0;

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import EmptyView from '../emptyView/EmptyView';
 import SingleTextInput from '../singleTextInput/SinlgeTextInput';
 import StudentCard from '../studentCard/StudentCard';
 import './StudentList.scss'
 
 function StudentList(props) {
 
-    const [students, setStudents] = useState([])
-    const [searchTerm, setSearchTerm] = useState('')
+    const [students, setStudents] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         const url = 'https://students-backend.adaptable.app/students'
 
         fetch(url).then(res => res.json())
             .then(data => {
                 setStudents(data);
+                setLoading(false);
             })
 
     }, [])
@@ -26,8 +30,8 @@ function StudentList(props) {
     if (searchTerm) {
         filteredStudents = students.filter(student => {
             let search = searchTerm.toLowerCase()
-            let first = student.firstName.toLowerCase().startsWith(search)
-            let last = student.lastName.toLowerCase().startsWith(search)
+            let first = student.firstname.toLowerCase().startsWith(search)
+            let last = student.lastname.toLowerCase().startsWith(search)
             return (first || last)
         })
     }
@@ -41,7 +45,8 @@ function StudentList(props) {
                     <StudentCard student={student} key={student.id} />
                 )
             })}
-            {filteredStudents.length === 0 && <div className="studentList__noResults">No Results</div>}
+            {loading && <EmptyView text="Loading... " center/>}
+            {!loading && filteredStudents.length === 0 &&  <EmptyView center/>}
         </div>
     );
 }
