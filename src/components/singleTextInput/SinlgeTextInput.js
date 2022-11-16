@@ -7,10 +7,10 @@ function SingleTextInput({ searchTerm, setSearchTerm, collection=[], onSubmit, p
         "width": width
     }
 
-    const handleSubmit = ()=>{
-        onSubmit([...collection, searchTerm])
+    // const handleSubmit = ()=>{
+    //     onSubmit([...collection, searchTerm])
 
-    }
+    // }
 
     useEffect(() => {
         const keyDownHandler = event => {
@@ -19,7 +19,7 @@ function SingleTextInput({ searchTerm, setSearchTerm, collection=[], onSubmit, p
           if (event.key === 'Enter') {
             event.preventDefault();
     
-           handleSubmit();
+           console.log("HANDLE SUBMIT here")
           }
         };
     

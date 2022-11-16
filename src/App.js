@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from './layout/navbar/Navbar';
+import About from './pages/About';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <div className="pageContainer">
           <Routes>
             <Route path="/students/:studentID" element={<StudentDetailPage />} />
+            <Route path="/about"  element={<About/>}/>
             <Route path="/" element={<StudentList />} />
           </Routes>
         </div>
