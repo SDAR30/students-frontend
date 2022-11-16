@@ -6,6 +6,10 @@ import './StudentCard.scss'
 import SingleTextInput from '../singleTextInput/SinlgeTextInput';
 import EmptyView from '../emptyView/EmptyView';
 import DialogBox from '../dialogueBox/DialogBox';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
+
 
 const StudentCard = ({ student }) => {
     const { id, pic, firstname, lastname, company, skill, email } = student;
@@ -14,6 +18,8 @@ const StudentCard = ({ student }) => {
     const [tag, setTag] = useState('')
     const [gradesLoading, setGradesLoading] = useState(false)
     const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+    const [deleteUserLoading, setDeleteUserLoading] = useState(false);
+    const [showSnackbar, setShowSnackbar] = useState(false)
 
     const [grades, setGrades] = useState([]);
 
@@ -32,6 +38,7 @@ const StudentCard = ({ student }) => {
     }
 
     const deleteUser = e => {
+        setDeleteUserLoading(true)
         console.log(id)
         const URL = `https://students-backend.adaptable.app/students/${id}`;
         
@@ -39,8 +46,11 @@ const StudentCard = ({ student }) => {
             .then(data =>{
                 //redirect to home and show toast that student is deleted
 
+                setDeleteUserLoading(false)
             }).catch(err=>{
                 //unsuccesful
+                setShowSnackbar(true)
+                setDeleteUserLoading(false)
             })
     }
 
@@ -69,6 +79,9 @@ const StudentCard = ({ student }) => {
 
     return (
         <div className="studentCard">
+            <Snackbar open={showSnackbar} autoHideDuration={2000} onClose={() => setShowSnackbar(false)} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+             <Alert severity="error">This is an error alert — check it out!</Alert>
+             </Snackbar>
             <Link to={`/students/${id}`} state={{ student: student }}>
 
                 <div className="studentCard__profilePic">
@@ -129,7 +142,7 @@ const StudentCard = ({ student }) => {
                 </div>
 
                 <div>
-                    {gradesLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size='1.7em' />}
+                    {deleteUserLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size='1.7em' />}
                     {(!showGrades && !gradesLoading) && <FaTrash className="studentCard__trashIcon" size='1.7em' onClick={(e) => showDeleteDialogue(e)} />}
                 </div>
             </div>
