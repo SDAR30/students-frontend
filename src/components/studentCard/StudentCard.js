@@ -5,6 +5,7 @@ import { AiOutlineReload } from 'react-icons/ai';
 import './StudentCard.scss'
 import SingleTextInput from '../singleTextInput/SinlgeTextInput';
 import EmptyView from '../emptyView/EmptyView';
+import DialogBox from '../dialogueBox/DialogBox';
 
 const StudentCard = ({ student }) => {
     const { id, pic, firstname, lastname, company, skill, email } = student;
@@ -12,6 +13,7 @@ const StudentCard = ({ student }) => {
     const [tags, setTags] = useState([])
     const [tag, setTag] = useState('')
     const [gradesLoading, setGradesLoading] = useState(false)
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
     const [grades, setGrades] = useState([]);
 
@@ -25,6 +27,23 @@ const StudentCard = ({ student }) => {
         setShowGrades(false);
     }
 
+    const showDeleteDialogue = e => {
+        setShowDeleteDialog(true)
+    }
+
+    const deleteUser = e => {
+        console.log(id)
+        const URL = `https://students-backend.adaptable.app/students/${id}`;
+        
+        fetch(URL, {method: 'DELETE'}).then(res => res.json())
+            .then(data =>{
+                //redirect to home and show toast that student is deleted
+
+            }).catch(err=>{
+                //unsuccesful
+            })
+    }
+
     const fetchAndShowGrades = e => {
         e.stopPropagation();
         e.preventDefault();
@@ -35,7 +54,7 @@ const StudentCard = ({ student }) => {
         } else {
             setGradesLoading(true)
 
-            const url = `http://localhost:3003/students/${id}/grades`
+            const url = `https://students-backend.adaptable.app/students/${id}/grades`
 
             fetch(url)
                 .then(res => res.json())
@@ -111,9 +130,10 @@ const StudentCard = ({ student }) => {
 
                 <div>
                     {gradesLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size='1.7em' />}
-                    {(!showGrades && !gradesLoading) && <FaTrash className="studentCard__trashIcon" size='1.7em' onClick={(e) => fetchAndShowGrades(e)} />}
+                    {(!showGrades && !gradesLoading) && <FaTrash className="studentCard__trashIcon" size='1.7em' onClick={(e) => showDeleteDialogue(e)} />}
                 </div>
             </div>
+            <DialogBox open={showDeleteDialog} setOpen={setShowDeleteDialog} deleteUser={deleteUser} />
 
         </div>
     );
