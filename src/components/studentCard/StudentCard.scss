@@ -7,7 +7,7 @@
     border-bottom: 2px solid rgb(203, 203, 203);
     background-color: white;
 
-    a{
+    a {
         text-decoration: none;
         display: flex;
         color: unset;
@@ -51,7 +51,7 @@
         line-height: 20px;
     }
 
-    &__gradeAverage{
+    &__gradeAverage {
         padding-bottom: 6px;
     }
 
@@ -65,14 +65,18 @@
         }
     }
 
-    &__tagCollection{
+    &__tagCollectionRow{
+        display: flex;
+    }
+
+    &__tagCollection {
         @extend %gray-and-indented;
         padding-top: 10px;
         margin-left: 20%;
-        width: 70%;
+        width: 62%;
     }
 
-    &__tag{
+    &__tag {
         display: inline-block;
         background-color: $tab-background;
         padding: 8px 10px;
@@ -81,37 +85,49 @@
         margin: 0 5px 5px 0;
     }
 
-    &__toggleIcons {
+    &__actionIcons{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+
+    &__toggleIcon, &__trashIcon {
+        cursor: pointer;
         color: $highlight-gray;
         padding-top: 7px;
-        
-        &__toggleIcon {
-            cursor: pointer;
-            &:hover{
-                color: black;
-            }
-            &-spinning{
-                animation: spin-animation 1.5s infinite;
-            }
+
+        &:hover {
+            color: black;
+        }
+
+        &-spinning {
+            animation: spin-animation 1.5s infinite;
         }
     }
+
+    &__trashIcon{
+        padding-top: 20px;
+    }
+
     @keyframes spin-animation {
         0% {
-          transform: rotate(0deg);
+            transform: rotate(0deg);
         }
-        100% {
-          transform: rotate(359deg);
-        }
-      }
 
-    @media screen and (max-width: 420px){
+        100% {
+            transform: rotate(359deg);
+        }
+    }
+
+    @media screen and (max-width: 420px) {
         &__name {
             font-size: 20px;
         }
     }
 
 
-    
+
 }
 
 /// &_name => studentCard > name

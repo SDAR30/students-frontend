@@ -8,6 +8,12 @@ body{
   //margin: 20px;
 }
 
+.pageContainer{
+  max-width: 800px;
+  margin: 0 auto; //center page
+  padding-top: 30px;
+}
+
 @media screen and (max-width: 420px){
   .App {
       margin: 0;

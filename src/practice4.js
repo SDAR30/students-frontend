@@ -50,12 +50,45 @@ function stringExpansion(s) {
 
 // console.log(stringExpansion('3D2a5d2f'))
 
-function productFib(prod){
-  var n = 0;
-  var nPlus = 1;  
-  while(n*nPlus < prod) {
-    nPlus = n + nPlus;
-    n = nPlus - n;
-  }
-  return [n, nPlus, n*nPlus===prod];
+// function productFib(prod){
+//   var n = 0;
+//   var nPlus = 1;  
+//   while(n*nPlus < prod) {
+//     nPlus = n + nPlus;
+//     n = nPlus - n;
+//   }
+//   return [n, nPlus, n*nPlus===prod];
+// }
+
+// function findByCount(arr, integer) {
+//   let counter = {};
+
+//   for(const food of arr){
+//       food in counter ? counter[food]++ : counter[food] = 1;
+//   }
+
+//   let answer = [];
+
+//   for(const [key, value] of Object.entries(counter)){
+//       if(value===integer)
+//           answer.push(key)
+//   }
+
+//   return answer;
+// }
+
+
+function ROT135(input) {
+  //Provide your magic here please ;)
+}
+
+function shiftLowerChar(char){
+  let num = char.charCodeAt(0);
+  num = (num + 13 > 122) ? num - 13 : num + 13;
+  return String.fromCharCode(num);
+}
+
+function shiftDigit(digit){
+digit = (digit + 5 > 9) ? digit - 5 : digit + 5; 
+return digit;
 }

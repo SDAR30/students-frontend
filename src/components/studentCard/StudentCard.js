@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaPlus, FaMinus, FaTrash } from 'react-icons/fa';
 import { AiOutlineReload } from 'react-icons/ai';
 import './StudentCard.scss'
 import SingleTextInput from '../singleTextInput/SinlgeTextInput';
@@ -73,7 +73,7 @@ const StudentCard = ({ student }) => {
 
 
                     <div className="studentCard__gradesList" style={{ "display": showGrades ? "block" : "none" }}>
-                        {grades.length > 0 && 
+                        {grades.length > 0 &&
                             <>
                                 <div className="studentCard__gradeAverage">
                                     Average: {calculateAverage(grades)}%
@@ -83,30 +83,36 @@ const StudentCard = ({ student }) => {
                                 })}
                             </>
                         }
-                        {grades.length === 0 && <EmptyView text="No grades yet"/>}
+                        {grades.length === 0 && <EmptyView text="No grades yet" />}
                     </div>
 
 
 
                 </div>
-
-                <div className="studentCard__toggleIcons">
-                    {gradesLoading && <AiOutlineReload className="studentCard__toggleIcons__toggleIcon-spinning" size='1.7em' />}
-                    {(!showGrades && !gradesLoading) && <FaPlus className="studentCard__toggleIcons__toggleIcon" size='1.7em' onClick={(e) => fetchAndShowGrades(e)} />}
-                    {(showGrades && !gradesLoading) && <FaMinus size='1.7em' className="studentCard__toggleIcons__toggleIcon" onClick={(e) => hideGrades(e)} />}
+                <div className="studentCard__actionIcons">
+                    {gradesLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size='1.7em' />}
+                    {(!showGrades && !gradesLoading) && <FaPlus className="studentCard__toggleIcon" size='1.7em' onClick={(e) => fetchAndShowGrades(e)} />}
+                    {(showGrades && !gradesLoading) && <FaMinus size='1.7em' className="studentCard__toggleIcon" onClick={(e) => hideGrades(e)} />}
                 </div>
             </Link>
-            
-            <div className="studentCard__tagCollection">
-                <div className="studentCard__tags">
-                    {tags.map((tag, index) => {
-                        return <span className="studentCard__tag" key={tag + index}>{tag}</span>
-                    })}
-                </div>
-                <div className="studentCard__tagInput">
-                    <SingleTextInput onSubmit={setTags} collection={tags} searchTerm={tag} setSearchTerm={setTag} placeholder="Add a tag" width="28%" />
+            <div className='studentCard__tagCollectionRow'>
+
+                <div className="studentCard__tagCollection">
+                    <div className="studentCard__tags">
+                        {tags.map((tag, index) => {
+                            return <span className="studentCard__tag" key={tag + index}>{tag}</span>
+                        })}
+                    </div>
+                    <div className="studentCard__tagInput">
+                        <SingleTextInput onSubmit={setTags} collection={tags} searchTerm={tag} setSearchTerm={setTag} placeholder="Add a tag" width="28%" />
+                    </div>
+
                 </div>
 
+                <div>
+                    {gradesLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size='1.7em' />}
+                    {(!showGrades && !gradesLoading) && <FaTrash className="studentCard__trashIcon" size='1.7em' onClick={(e) => fetchAndShowGrades(e)} />}
+                </div>
             </div>
 
         </div>

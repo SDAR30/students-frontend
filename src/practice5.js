@@ -1,23 +1,49 @@
-function fib(n) {
-    if (n === 0) return 0n;
-    if (n < 2) return 1n;
-
-    let first = 1;
-    let second = 1;
-    let third = 2;
-    let index = 2;
-
-    while (index < n) {
-        third = first + second;
-        first = second;
-        second = third;
-        index++;
+function getPINs(observed) {
+    let lock = {
+        1: ['1', '2', '4'], 2: ['1', '2', '3', '5'], 3: ['2', '3', '6'], 4: ['1', '4', '5', '7'],
+        5: ['2', '4', '5', '6', '8'], 6: ['3', '5', '6', '9'], 7: ['4', '7', '8'], 8: ['5', '7', '8', '9', '0'],
+        9: ['6', '8', '9'], 0: ['8', '0']
     }
-    return BigInt(third);
+    let digits = observed.split('');
 
+    let combos = [];
+
+    for (let i = 0; i < digits.length; i++) {
+        combos.push(lock[digits[i]])
+    }
+    return combos.reduce((a, b) => a.flatMap(x => b.map(y => x + y)), [''])
 }
 
-console.log(fib(4))
-console.log(fib(5))
-console.log(fib(6))
-console.log(fib(180))
+function getPIN2(observed) {
+    let observedINT = observed.split('');
+    let pins = [];
+    let lock = {
+        0: ["0", "8"],
+        1: ["1", "2", "4"],
+        2: ["1", "2", "3", "5"],
+        3: ["2", "3", "6"],
+        4: ["1", "4", "5", "7"],
+        5: ["2", "4", "5", "6", "8"],
+        6: ["3", "5", "6", "9"],
+        7: ["4", "7", "8"],
+        8: ["0", "5", "7", "8", "9"],
+        9: ["6", "8", "9"]
+    };
+
+    for (let i in observedINT) {
+        let possible = lock[observedINT[i]];
+        pins.push(possible);
+    }
+
+    return pins.reduce(function (a, b) {
+        let result = [];
+        for (let x in a) {
+            for (let y in b) {
+                result.push(a[x] + b[y]);
+            }
+        }
+        return result;
+    });
+}
+//  console.log(getPIN2('101'))
+

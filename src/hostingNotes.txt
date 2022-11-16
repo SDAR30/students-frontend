@@ -1,5 +1,5 @@
 To Host on Adaptable:
- use Node.js
+-use Node.js
 
 1) npm install serve
 
@@ -9,9 +9,7 @@ from:
 
 "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+
   },
 
 to: 
@@ -19,9 +17,7 @@ to:
 "scripts": {
 "dev": "react-scripts start",
 "start": "serve -s build -l $PORT",
-"build": "react-scripts build",
-"test": "react-scripts test",
-"eject": "react-scripts eject"
+
 }
 
 

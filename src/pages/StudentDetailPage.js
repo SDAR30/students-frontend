@@ -20,10 +20,6 @@ function StudentDetailPage(props) {
       
     }, [location.state?.student, studentID])
     
-    
-
-
-    
     return (
         <div className="studentDetailPage">
             {Object.keys(student).length> 0  && <StudentCard student={student}/>}
