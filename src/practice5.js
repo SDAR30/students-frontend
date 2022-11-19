@@ -47,3 +47,12 @@ function getPIN2(observed) {
 }
 //  console.log(getPIN2('101'))
 
+let vals = [3,4,6]
+let result = vals.reduce((acc,cur)=>{
+    let result = [];
+    result.push(acc + ''+ cur);
+    result.push(cur + ''+ acc)
+    return result;
+},[])
+
+ console.log(result)

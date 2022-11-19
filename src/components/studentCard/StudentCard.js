@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPlus, FaMinus, FaTrash } from 'react-icons/fa';
 import { AiOutlineReload } from 'react-icons/ai';
 import './StudentCard.scss'
@@ -11,7 +11,8 @@ import Alert from '@mui/material/Alert';
 
 
 
-const StudentCard = ({ student }) => {
+const StudentCard = ({ student, showDelete = false }) => {
+    let navigate = useNavigate();
     const { id, pic, firstname, lastname, company, skill, email } = student;
     const [showGrades, setShowGrades] = useState(false)
     const [tags, setTags] = useState([])
@@ -41,13 +42,19 @@ const StudentCard = ({ student }) => {
         setDeleteUserLoading(true)
         console.log(id)
         const URL = `https://students-backend.adaptable.app/students/${id}`;
-        
-        fetch(URL, {method: 'DELETE'}).then(res => res.json())
-            .then(data =>{
-                //redirect to home and show toast that student is deleted
 
+        fetch(URL, { method: 'DELETE' }).then(res => res.json())
+            .then(data => {
+                //redirect to home and show toast that student is deleted
+                navigate('/', {
+                    state: {
+                        studentName: `${data.firstname} ${data.lastname}`,
+                        status: true
+                    }
+                })
+                console.log('deleted')
                 setDeleteUserLoading(false)
-            }).catch(err=>{
+            }).catch(err => {
                 //unsuccesful
                 setShowSnackbar(true)
                 setDeleteUserLoading(false)
@@ -79,9 +86,9 @@ const StudentCard = ({ student }) => {
 
     return (
         <div className="studentCard">
-            <Snackbar open={showSnackbar} autoHideDuration={2000} onClose={() => setShowSnackbar(false)} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-             <Alert severity="error">This is an error alert — check it out!</Alert>
-             </Snackbar>
+            <Snackbar open={showSnackbar} autoHideDuration={2000} onClose={() => setShowSnackbar(false)} message="message of Snackbar" anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                <Alert severity="error">FAiled to Delete</Alert>
+            </Snackbar>
             <Link to={`/students/${id}`} state={{ student: student }}>
 
                 <div className="studentCard__profilePic">
@@ -141,10 +148,10 @@ const StudentCard = ({ student }) => {
 
                 </div>
 
-                <div>
+                {showDelete && <div>
                     {deleteUserLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size='1.7em' />}
                     {(!showGrades && !gradesLoading) && <FaTrash className="studentCard__trashIcon" size='1.7em' onClick={(e) => showDeleteDialogue(e)} />}
-                </div>
+                </div>}
             </div>
             <DialogBox open={showDeleteDialog} setOpen={setShowDeleteDialog} deleteUser={deleteUser} />
 

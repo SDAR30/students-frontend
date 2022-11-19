@@ -78,17 +78,41 @@ function stringExpansion(s) {
 // }
 
 
-function ROT135(input) {
-  //Provide your magic here please ;)
+// function ROT135(input) {
+//   //Provide your magic here please ;)
+// }
+
+// function shiftLowerChar(char){
+//   let num = char.charCodeAt(0);
+//   num = (num + 13 > 122) ? num - 13 : num + 13;
+//   return String.fromCharCode(num);
+// }
+
+// function shiftDigit(digit){
+// digit = (digit + 5 > 9) ? digit - 5 : digit + 5; 
+// return digit;
+// }
+
+// function replicate(times, number, result=[]){
+//   if (times<1) return result;
+//   result.push(number)
+//   return replicate(times-1, number, result)
+// }
+
+let replicate = (times, number) => times < 1 ? [] : [number, ...(replicate(times-1, number))]
+
+const flattenArray = arr =>{
+  let flattened = [];
+  for(const element of arr){
+    if(Array.isArray(element)){
+      flattened.push(...flattenArray(element))
+    }else{
+      flattened.push(element)
+    }
+  }
+  return flattened
 }
 
-function shiftLowerChar(char){
-  let num = char.charCodeAt(0);
-  num = (num + 13 > 122) ? num - 13 : num + 13;
-  return String.fromCharCode(num);
-}
+// console.log(flattenArray([2,[[3,4],5],6]))
+// console.log([4,[5,[7],8],9].flat(Infinity))
 
-function shiftDigit(digit){
-digit = (digit + 5 > 9) ? digit - 5 : digit + 5; 
-return digit;
-}
