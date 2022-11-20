@@ -150,7 +150,7 @@ const StudentCard = ({ student, showDelete = false }) => {
 
                 {showDelete && <div>
                     {deleteUserLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size='1.7em' />}
-                    {(!showGrades && !gradesLoading) && <FaTrash className="studentCard__trashIcon" size='1.7em' onClick={(e) => showDeleteDialogue(e)} />}
+                    {!deleteUserLoading && <FaTrash className="studentCard__trashIcon" size='1.7em' onClick={(e) => showDeleteDialogue(e)} />}
                 </div>}
             </div>
             <DialogBox open={showDeleteDialog} setOpen={setShowDeleteDialog} deleteUser={deleteUser} />

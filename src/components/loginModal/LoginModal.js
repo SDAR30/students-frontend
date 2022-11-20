@@ -38,8 +38,9 @@ function LoginModal({openLoginModal, setOpenLoginModal}) {
           <Typography className="loginModal__title" id="modal-modal-title" variant="h6" component="h2">
             Please create an account
           </Typography>
-          <TextField id="outlined-basic" label="Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Username" variant="outlined" required />
+          <TextField id="outlined-basic" label="first name" variant="outlined" />
+          <TextField id="outlined-basic" label="last name" variant="outlined" required />
+          <TextField id="outlined-basic" label="username" variant="outlined" required />
           <TextField id="outlined-basic" label="Email" variant="outlined" required />
           <TextField id="outlined-basic" label="Password" variant="outlined" required/>
         </Box>
