@@ -11,6 +11,11 @@
     padding: 0 5%;
     border-bottom: $shadow-gray 2px solid;
 
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
     &__logo {
         font-size: 24px;
         font-weight: 700;
@@ -26,11 +31,6 @@
 
     &__menuItem {
         list-style: none;
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
     }
 
     &__toggleIcon{

@@ -7,7 +7,7 @@ function Navbar(props) {
 
     return (
         <div className="navbar">
-            <div className="navbar__logo">Student App</div>
+            <div className="navbar__logo"> <Link to="/">Student App</Link ></div>
             <div className={ active ? "navbar__menuItems active" : "navbar__menuItems"}>
                 <li className="navbar__menuItem"> <Link to="/">Students</Link ></li>
                 <li className="navbar__menuItem"><Link to="/about">About</Link></li>
