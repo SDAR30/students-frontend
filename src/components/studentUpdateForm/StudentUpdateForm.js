@@ -6,7 +6,7 @@ import { AiOutlineReload } from 'react-icons/ai';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-function StudentUpdateForm({ student }) {
+function StudentUpdateForm({ student, setStudent }) {
     const [firstname, setFirstname] = useState(student.firstname);
     const [lastname, setLastname] = useState(student.lastname);
     const [company, setCompany] = useState(student.company);
@@ -16,6 +16,7 @@ function StudentUpdateForm({ student }) {
     const [anyChanges, setAnyChanges] = useState(false)
     const [loading, setLoading] = useState(false)
     const [showSnackbar, setShowSnackbar] = useState(false)
+    const [succesfulUpdate, setSuccesfulUpdate] = useState(false)
 
     const handleChange = e => {
         setAnyChanges(true)
@@ -59,21 +60,26 @@ function StudentUpdateForm({ student }) {
 
         fetch(url, requestOptions).then(res => res.json())
             .then(data => {
-
+                setStudent(data)
                 setAnyChanges(false)
+                setSuccesfulUpdate(true)
                 setLoading(false)
+                setShowSnackbar(true)
             }).catch(err => {
                 setLoading(false)
+                setSuccesfulUpdate(false)
                 setShowSnackbar(true)
             })
 
     }
 
+    const errorElement = <Alert severity="error">FAiled to update</Alert>;
+    const successElement = <Alert >Student update succesful!</Alert>;
 
     return (
         <div className='studentUpdateForm'>
              <Snackbar open={showSnackbar} autoHideDuration={2000} onClose={() => setShowSnackbar(false)} message="message of Snackbar" anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                <Alert severity="error">FAiled to update</Alert>
+                {succesfulUpdate ? successElement : errorElement} 
             </Snackbar>
             <h3 className='studentUpdateForm__title'> Update Student</h3>
             <div className='studentUpdateForm__inputs'>

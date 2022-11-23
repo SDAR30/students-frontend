@@ -10,21 +10,21 @@ function StudentDetailPage(props) {
     const { studentID } = params;
 
     useEffect(() => {
-        if(location.state?.student){
-            setStudent(location.state?.student)
-        }else{
+        // if(location.state?.student){ //if coming here from students page, no need to make new call
+        //     setStudent(location.state?.student)
+        // }else{
             const sinlgeStudentURL = "https://students-backend.adaptable.app/students/" + studentID
 
             fetch(sinlgeStudentURL).then(res => res.json())
             .then(data => setStudent(data))
-        }
+        //}
       
     }, [location.state?.student, studentID])
     
     return (
         <div className="studentDetailPage">
             {Object.keys(student).length> 0  && <StudentCard student={student} showDelete/>}
-            {Object.keys(student).length> 0  && <StudentUpdateForm student={student} />}
+            {Object.keys(student).length> 0  && <StudentUpdateForm student={student} setStudent={setStudent}/>}
         </div>
     );
 }
