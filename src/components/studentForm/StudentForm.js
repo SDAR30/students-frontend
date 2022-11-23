@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './StudentUpdateForm.scss'
+import './StudentForm.scss'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { AiOutlineReload } from 'react-icons/ai';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-function StudentUpdateForm({ student, setStudent }) {
+function StudentForm({ student ={}, setStudent, title="Update", method='PUT'}) {
     const [firstname, setFirstname] = useState(student.firstname);
     const [lastname, setLastname] = useState(student.lastname);
     const [company, setCompany] = useState(student.company);
@@ -53,7 +53,7 @@ function StudentUpdateForm({ student, setStudent }) {
         const url = `https://students-backend.adaptable.app/students/${student.id}`
 
         const requestOptions = {
-            method: 'PUT',
+            method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstname, lastname, company, city, skill, pic }) //shorthand for pic: pic
         };
@@ -72,17 +72,17 @@ function StudentUpdateForm({ student, setStudent }) {
             })
 
     }
-
-    const errorElement = <Alert severity="error">FAiled to update</Alert>;
-    const successElement = <Alert >Student update succesful!</Alert>;
+    const action = method === 'PUT' ? 'updating student' : 'creating'
+    const errorElement = <Alert severity="error">FAiled to {action}</Alert>;
+    const successElement = <Alert >Student {action} succesful!</Alert>;
 
     return (
-        <div className='studentUpdateForm'>
+        <div className='studentForm'>
              <Snackbar open={showSnackbar} autoHideDuration={2000} onClose={() => setShowSnackbar(false)} message="message of Snackbar" anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
                 {succesfulUpdate ? successElement : errorElement} 
             </Snackbar>
-            <h3 className='studentUpdateForm__title'> Update Student</h3>
-            <div className='studentUpdateForm__inputs'>
+            <h3 className='studentForm__title'> {title} Student</h3>
+            <div className='studentForm__inputs'>
                 <TextField id="outlined-basic" label="First Name" name='firstname' variant="outlined" value={firstname} onChange={e => handleChange(e)} />
                 <TextField id="outlined-basic" label="Last Name" name='lastname' variant="outlined" value={lastname} onChange={e => handleChange(e)} />
                 <TextField id="outlined-basic" label="Company" name='company' variant="outlined" value={company} onChange={e => handleChange(e)} />
@@ -92,19 +92,18 @@ function StudentUpdateForm({ student, setStudent }) {
 
             </div>
 
-            <div className='studentUpdateForm__submit'>
+            <div className='studentForm__submit'>
                 <Button
                     variant="contained"
                     size='large'
                     disabled={!anyChanges}
                     onClick={handleSubmit}
-                    endIcon={loading && <AiOutlineReload className='studentUpdateForm__submitLoader-spinning' />}
-                > Update</Button>
-
+                    endIcon={loading && <AiOutlineReload className='studentForm__submitLoader-spinning' />}
+                > {title}</Button>
 
             </div>
         </div>
     );
 }
 // styling for material UI element: sx={{mr: '20px', mb: '20px'}}
-export default StudentUpdateForm;
+export default StudentForm;

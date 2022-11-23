@@ -11,6 +11,7 @@ import Navbar from './layout/navbar/Navbar';
 import About from './pages/About';
 import LoginModal from './components/loginModal/LoginModal';
 import Home from './pages/Home';
+import AddStudentPage from './pages/AddStudentPage';
 
 function App() {
   const [openLoginModal, setOpenLoginModal] = useState(false)
@@ -24,6 +25,7 @@ function App() {
         <div className="pageContainer">
           <Routes>
             <Route path="/students/:studentID" element={<StudentDetailPage />} />
+            <Route path="/students/new" element={<AddStudentPage />} />
             <Route path="/about"  element={<About/>}/>
             <Route path="/contact" element={<Royal />}/>
             <Route path="/" element={<Home/>} />

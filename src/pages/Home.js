@@ -5,7 +5,7 @@ import NavigationButton from '../components/navigationButton/NavigationButton';
 function Home(props) {
     return (
         <div className='home'>
-            <NavigationButton />
+            <NavigationButton buttonText={'add new student'} url={'/students/new'}/>
             <StudentList />
         </div>
     );
