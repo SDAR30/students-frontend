@@ -47,12 +47,15 @@ function getPIN2(observed) {
 }
 //  console.log(getPIN2('101'))
 
-let vals = [3,4,6]
-let result = vals.reduce((acc,cur)=>{
-    let result = [];
-    result.push(acc + ''+ cur);
-    result.push(cur + ''+ acc)
-    return result;
-},[])
+// let vals = [3,4,6]
+// let result = vals.reduce((acc,cur)=>{
+//     let result = [];
+//     result.push(acc + ''+ cur);
+//     result.push(cur + ''+ acc)
+//     return result;
+// },[])
 
- console.log(result)
+//  console.log(result)
+let mat = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
+// mat.map((a,i)=> a.filter((b,j)=> { if (j%2=== (i%2)) console.log(b) }))
+console.log(mat.flat())

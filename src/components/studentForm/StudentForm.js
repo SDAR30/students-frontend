@@ -5,14 +5,16 @@ import Button from '@mui/material/Button';
 import { AiOutlineReload } from 'react-icons/ai';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { useNavigate } from "react-router-dom";
 
-function StudentForm({ student ={}, setStudent, title="Update", method='PUT'}) {
-    const [firstname, setFirstname] = useState(student.firstname);
-    const [lastname, setLastname] = useState(student.lastname);
-    const [company, setCompany] = useState(student.company);
-    const [city, setCity] = useState(student.city);
-    const [skill, setSkill] = useState(student.skill);
-    const [pic, setPic] = useState(student.pic);
+function StudentForm({ student = {}, setStudent, title = "Update", method = 'PUT' }) {
+    let navigate = useNavigate();
+    const [firstname, setFirstname] = useState(student.firstname || '');
+    const [lastname, setLastname] = useState(student.lastname || '');
+    const [company, setCompany] = useState(student.company || '');
+    const [city, setCity] = useState(student.city || '');
+    const [skill, setSkill] = useState(student.skill || '');
+    const [pic, setPic] = useState(student.pic || '');
     const [anyChanges, setAnyChanges] = useState(false)
     const [loading, setLoading] = useState(false)
     const [showSnackbar, setShowSnackbar] = useState(false)
@@ -50,7 +52,7 @@ function StudentForm({ student ={}, setStudent, title="Update", method='PUT'}) {
 
         setLoading(true)
 
-        const url = `https://students-backend.adaptable.app/students/${student.id}`
+        const url = (method === 'PUT') ? `https://students-backend.adaptable.app/students/${student.id}` : `https://students-backend.adaptable.app/students/`
 
         const requestOptions = {
             method,
@@ -60,11 +62,23 @@ function StudentForm({ student ={}, setStudent, title="Update", method='PUT'}) {
 
         fetch(url, requestOptions).then(res => res.json())
             .then(data => {
-                setStudent(data)
-                setAnyChanges(false)
+                console.log(data)
+                if (method === 'POST') {
+                    navigate(`/students/${data.id}`, {
+                        state: {
+                            fromCreateStudent: true,
+                            studentName: `${data.firstname} ${data.lastname}`
+                        }
+                    })
+
+                } else {
+                    setAnyChanges(false)
                 setSuccesfulUpdate(true)
                 setLoading(false)
                 setShowSnackbar(true)
+                    setStudent(data)
+                }
+
             }).catch(err => {
                 setLoading(false)
                 setSuccesfulUpdate(false)
@@ -78,8 +92,8 @@ function StudentForm({ student ={}, setStudent, title="Update", method='PUT'}) {
 
     return (
         <div className='studentForm'>
-             <Snackbar open={showSnackbar} autoHideDuration={2000} onClose={() => setShowSnackbar(false)} message="message of Snackbar" anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                {succesfulUpdate ? successElement : errorElement} 
+            <Snackbar open={showSnackbar} autoHideDuration={2000} onClose={() => setShowSnackbar(false)} message="message of Snackbar" anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                {succesfulUpdate ? successElement : errorElement}
             </Snackbar>
             <h3 className='studentForm__title'> {title} Student</h3>
             <div className='studentForm__inputs'>
