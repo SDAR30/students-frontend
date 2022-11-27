@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import EmptyView from '../emptyView/EmptyView';
-import SingleTextInput from '../singleTextInput/SinlgeTextInput';
 import StudentCard from '../studentCard/StudentCard';
 import './StudentList.scss'
 import { useLocation } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import SearchBar from '../SearchBar/SearchBar';
 
 function StudentList(props) {
 
@@ -61,8 +61,8 @@ function StudentList(props) {
                 <Alert>{location?.state?.studentName} was succesfully Deleted</Alert>
             </Snackbar>
 
-
-            <SingleTextInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            
             {filteredStudents.map((student, index) => {
                 return (
                     <StudentCard student={student} key={student.id} />
