@@ -1,10 +1,14 @@
 .navigationButton{
     display: flex;
     justify-content: flex-end;
-    width: 600px;
     margin: auto;
 
     a{
         text-decoration: none;
+    }
+
+    @media only screen and (max-width: 440px) {
+        width: auto;
+        margin: 0 10px 10px 0;
     }
 }
